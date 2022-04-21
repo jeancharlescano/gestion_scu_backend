@@ -5,14 +5,14 @@ pool.connect;
 //#region CRUD
 
 export const createIndividu = async (req, res) => {
-  const { firstName, lastName, surname, location, action, phoneNumber } =
+  const { firstName, lastName, surname, location, action, phoneNumber, userId } =
     req.body;
 
   let result = null;
   await pool
     .query(
-      "INSERT INTO individu (nom, prenom, pseudo, lieu, action, telephone) VALUES ($1, $2, $3, $4, $5, $6);",
-      [lastName, firstName, surname, location, action, phoneNumber]
+      "INSERT INTO individu (nom, prenom, pseudo, lieu, action, telephone, id_utilisateur) VALUES ($1, $2, $3, $4, $5, $6, $7);",
+      [lastName, firstName, surname, location, action, phoneNumber, userId]
     )
     .then((_response) => {
       result = true;
