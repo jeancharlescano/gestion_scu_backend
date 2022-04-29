@@ -5,12 +5,14 @@ pool.connect;
 //#region CRUD
 
 export const createCommentaire = async (req, res) => {
+
   const { commentaire, date, lieu, action, idUser, idIndvidu } = req.body;
 
   let result = null;
   await pool
     .query(
       "INSERT INTO commentaire (commentaire, date, lieu, action, id_utilisateur, id_individu) VALUES ($1, $2, $3, $4, $5, $6);",
+
       [commentaire, date, lieu, action, idUser, idIndvidu]
     )
     .then((_response) => {
@@ -55,8 +57,8 @@ export const updateCommentaireById = async (req, res) => {
   let result = null;
   pool
     .query(
-      "UPDATE commentaire SET commentaire = $1, date = $2, id_utilisateur = $3, id_individu = $4 WHERE id = $5;",
-      [commentaire, date, idUser, idIndvidu, id]
+      "UPDATE commentaire SET commentaire = $1, date = $2, lieu = $3, action = $4, id_utilisateur = $5, id_individu = $6 WHERE id = $7;",
+      [commentary, date, lieu, action, idUser, idIndvidu, id]
     )
     .then((_res) => {
       result = true;
