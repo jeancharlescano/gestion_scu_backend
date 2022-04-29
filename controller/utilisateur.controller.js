@@ -22,7 +22,7 @@ export const createUtilisateur = async (req, res) => {
   let result = null;
   await pool
     .query(
-      "INSERT INTO utilisateur (nom, prenom, pseudo, mot_de_passe, telephone, grade, specialite, isadmin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);",
+      "INSERT INTO utilisateur (nom, prenom, pseudo, mot_de_passe, telephone, grade, specialite, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);",
       [firstName, lastName, surname, password, phoneNumber, rank, role, isAdmin]
     )
     .then((_response) => {
@@ -76,7 +76,7 @@ export const updateUtilisateurById = async (req, res) => {
   let result = null;
   pool
     .query(
-      "UPDATE utilisateur SET nom = $1, prenom = $2, pseudo = $3, mot_de_passe = $4, telephone = $5, grade = $6, specialite = $7, idAdmin = $8  WHERE id = $9;",
+      "UPDATE utilisateur SET nom = $1, prenom = $2, pseudo = $3, mot_de_passe = $4, telephone = $5, grade = $6, specialite = $7, is_admin = $8  WHERE id = $9;",
       [
         firstName,
         lastName,

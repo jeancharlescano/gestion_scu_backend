@@ -5,13 +5,13 @@ pool.connect;
 //#region CRUD
 
 export const createCommentaire = async (req, res) => {
-  const { commentaire, date, idUser, idIndvidu } = req.body;
+  const { commentaire, date, lieu, action, idUser, idIndvidu } = req.body;
 
   let result = null;
   await pool
     .query(
-      "INSERT INTO commentaire (commentaire, date, id_utilisateur, id_individu) VALUES ($1, $2, $3, $4);",
-      [commentaire, date, idUser, idIndvidu]
+      "INSERT INTO commentaire (commentaire, date, lieu, action, id_utilisateur, id_individu) VALUES ($1, $2, $3, $4, $5, $6);",
+      [commentaire, date, lieu, action, idUser, idIndvidu]
     )
     .then((_response) => {
       result = true;
@@ -50,7 +50,7 @@ export const getCommentaireById = async (req, res) => {
 
 export const updateCommentaireById = async (req, res) => {
   const { id } = req.params;
-  const { commentaire, date, idUser, idIndvidu } = req.body;
+  const { commentaire, date, lieu, action, idUser, idIndvidu } = req.body;
 
   let result = null;
   pool

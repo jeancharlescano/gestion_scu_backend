@@ -4,7 +4,7 @@ const { Pool } = pkg;
 //connexion a la bdd local
 export const pool = new Pool({
   user: "postgres",
-  host: "localhost", // <== a changer par l'ip de la machine si bdd sur serveur
+  host: "192.168.1.19", // <== a changer par l'ip de la machine si bdd sur serveur
   database: "gestionscu",
   password: "password",
   port: 5432,

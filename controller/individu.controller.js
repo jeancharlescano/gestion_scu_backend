@@ -5,14 +5,13 @@ pool.connect;
 //#region CRUD
 
 export const createIndividu = async (req, res) => {
-  const { firstName, lastName, surname, location, action, phoneNumber } =
-    req.body;
+  const { firstName, lastName, surname, phoneNumber, idUser } = req.body;
 
   let result = null;
   await pool
     .query(
-      "INSERT INTO individu (nom, prenom, pseudo, lieu, action, telephone) VALUES ($1, $2, $3, $4, $5, $6);",
-      [lastName, firstName, surname, location, action, phoneNumber]
+      "INSERT INTO individu (nom, prenom, pseudo, telephone, id_utilisateur ) VALUES ($1, $2, $3, $4, $5);",
+      [lastName, firstName, surname, phoneNumber, idUser]
     )
     .then((_response) => {
       result = true;
@@ -51,14 +50,13 @@ export const getIndividuById = async (req, res) => {
 
 export const updateIndividuById = async (req, res) => {
   const { id } = req.params;
-  const { firstName, lastName, surname, location, action, phoneNumber } =
-    req.body;
+  const { firstName, lastName, surname, phoneNumber, idUser } = req.body;
 
   let result = null;
   pool
     .query(
-      "UPDATE individu SET nom = $1, prenom = $2, pseudo = $3, lieu = $4, action = $5 telephone = $6 WHERE id = $7;",
-      [firstName, lastName, surname, location, action, phoneNumber, id]
+      "UPDATE individu SET nom = $1, prenom = $2, pseudo = $3, telephone = $4, id_utilisateur = $5 WHERE id = $6;",
+      [firstName, lastName, surname, phoneNumber, idUser, id]
     )
     .then((_res) => {
       result = true;
